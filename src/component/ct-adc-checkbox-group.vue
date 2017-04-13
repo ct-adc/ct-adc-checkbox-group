@@ -58,6 +58,8 @@
             checkedMap() {
                 const map = {};
 
+                this.checkedLen = this.matchedList.length;
+
                 JSON.parse(JSON.stringify(this.matchedList)).forEach((item) => {
                     map[item[this.matchKey]] = true;
                 });
