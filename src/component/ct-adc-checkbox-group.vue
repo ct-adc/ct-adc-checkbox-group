@@ -1,16 +1,23 @@
 <template>
     <div class="border-wrapper">
         <div>
-            <label class="checkbox-inline">
-                <input type="checkbox" value="true" v-model="isCheckedAll" @change="checkAll($event.target.checked)"> 全选
+            <label class="checkbox-inline" :class="{disabled: disabled}">
+                <input type="checkbox" value="true"
+                       :disabled="disabled"
+                       v-model="isCheckedAll"
+                       @change="checkAll($event.target.checked)"> 全选
             </label>
         </div>
 
         <hr class="split-line">
 
         <div class="matched-list">
-            <label class="checkbox-inline" v-for="(item, index) in checkboxList">
-                <input type="checkbox" value="item.Name" v-model="item._checked"
+            <label class="checkbox-inline"
+                   :class="{disabled: disabled}"
+                   v-for="(item, index) in checkboxList">
+                <input type="checkbox" value="item.Name"
+                       :disabled="disabled"
+                       v-model="item._checked"
                        @change="check(item, $event.target.checked)"> {{ item[showKey] }}
             </label>
         </div>
@@ -47,6 +54,12 @@
             matchKey: {
                 type: String,
                 required: true
+            },
+
+            // 是否禁用所有的 checkbox
+            disabled: {
+                type: Boolean,
+                default: false
             }
         },
         data() {
