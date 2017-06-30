@@ -1,7 +1,7 @@
 <template>
-    <div class="border-wrapper">
+    <div>
         <div>
-            <label class="checkbox-inline" :class="{disabled: disabled}">
+            <label class="checkbox-inline no-user-select" :class="{disabled: disabled}">
                 <input type="checkbox" value="true"
                        :disabled="disabled"
                        v-model="isCheckedAll"
@@ -12,6 +12,7 @@
         <hr class="split-line">
 
         <div class="matched-list">
+            <span class="ml-10 text-muted" v-if="checkboxList.length === 0">暂无数据</span>
             <label class="checkbox-inline"
                    :class="{disabled: disabled}"
                    v-for="(item, index) in checkboxList">
@@ -132,26 +133,26 @@
     };
 </script>
 
-<style rel="stylesheet/scss" lang="scss">
-    .border-wrapper {
-        padding: 6px 10px;
-        height: auto;
-        border: 1px solid #ccc;
-        border-radius: 3px;
-        box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-    }
-
+<style>
     .split-line {
         border-style: dashed;
+    }
+
+    .ml-10 {
+        margin-left: 10px;
+    }
+
+    .no-user-select {
+        user-select: none;
     }
 
     .matched-list {
         margin-left: -10px;
         margin-bottom: -10px;
+    }
 
-        .checkbox-inline {
-            margin-left: 10px;
-            margin-bottom: 10px;
-        }
+    .matched-list .checkbox-inline {
+        margin-left: 10px;
+        margin-bottom: 10px;
     }
 </style>
