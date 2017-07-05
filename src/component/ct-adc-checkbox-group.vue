@@ -1,9 +1,9 @@
 <template>
     <div>
         <div>
-            <label class="checkbox-inline no-user-select" :class="{disabled: disabled}">
+            <label class="checkbox-inline no-user-select" :class="{disabled: disabled || checkboxList.length === 0}">
                 <input type="checkbox" value="true"
-                       :disabled="disabled"
+                       :disabled="disabled || checkboxList.length === 0"
                        v-model="isCheckedAll"
                        @change="checkAll($event.target.checked)"> 全选
             </label>
