@@ -97,7 +97,9 @@
                 return this.checkboxList.length;
             },
             isCheckedAll() {
-                return this.checkedLen === this.checkboxListLen;
+                // Q: 为什么是大于等于 ?
+                // A: 因为我不能保证外部 list 先更新，还是 matchedList 先更新
+                return this.checkedLen >= this.checkboxListLen;
             }
         },
         methods: {
@@ -128,6 +130,12 @@
                 return this.checkboxList.filter((item) => {
                     return item._checked;
                 });
+            }
+        },
+        watch: {
+            // 每次列表改变，应该重置计数
+            'list'() {
+                this.checkedLen = this.matchedList.length;
             }
         }
     };
